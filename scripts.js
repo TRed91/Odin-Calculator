@@ -21,6 +21,7 @@ let operator;
 let display = document.querySelector("#display");
 
 let numberInput = [
+    {num: document.querySelector("#btn0"), value: 0},
     {num: document.querySelector("#btn1"), value: 1},
     {num: document.querySelector("#btn2"), value: 2},
     {num: document.querySelector("#btn3"), value: 3},
