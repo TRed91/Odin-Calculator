@@ -49,8 +49,8 @@ clearInput.addEventListener("click", () => display.textContent = "");
 
 equalInput.addEventListener("click", () => {
     let arrayFromDisplay = operationFromDisplay.split(" ");
-    numberFirst = parseInt(arrayFromDisplay[0]);
-    numberSecond = parseInt(arrayFromDisplay[2]);
+    numberFirst = parseFloat(arrayFromDisplay[0]).toFixed(1);
+    numberSecond = parseFloat(arrayFromDisplay[2]).toFixed(1);
     operator = arrayFromDisplay[1];
     operate(numberFirst, numberSecond, operator);
 });
@@ -65,5 +65,5 @@ function operate (numOne, numTwo, operator) {
         case "/": return divide(numOne, numTwo); break;
     }
     }
-    return display.textContent = result();
+    return display.textContent = result().toFixed(1);
 }
