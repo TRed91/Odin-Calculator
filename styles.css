@@ -79,3 +79,11 @@ button {
     border-radius: 10px;
     border: solid black 3px;
 }
+
+p {
+    height: 5px;
+    flex-shrink: 1;
+    color: antiquewhite;
+    text-align: end;
+    margin: 0%;
+}
