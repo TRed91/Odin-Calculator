@@ -95,7 +95,7 @@ function operate (numOne, numTwo, op) {
         case " / ": return divide(numOne, numTwo); break;
     }
     }
-    numberFirst = result().toString();
+    numberFirst = result().toFixed(2).toString();
     operator = "";
     numberSecond = "";
     return display.textContent = numberFirst;
