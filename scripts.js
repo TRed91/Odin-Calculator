@@ -62,7 +62,7 @@ operatorInput.forEach((button) => button.btn.addEventListener("click", () => {
     if (operator === "" && numberFirst !== "") {
         display.textContent += button.value;
         operator = button.value;
-    } else if (numberFirst === "") {
+    } else if (numberFirst === "" || numberSecond === "") {
         //do nothing
     } else {
         operate(parseFloat(numberFirst), parseFloat(numberSecond), operator);
@@ -95,8 +95,12 @@ function operate (numOne, numTwo, op) {
         case " / ": return divide(numOne, numTwo); break;
     }
     }
-    numberFirst = result().toFixed(2).toString();
+    numberFirst = (Math.round(result() *10) / 10).toString();
     operator = "";
     numberSecond = "";
+    if (numberFirst == Infinity) {
+        numberFirst = "";
+        return display.textContent = "You doomed us all!";
+    }
     return display.textContent = numberFirst;
 }
