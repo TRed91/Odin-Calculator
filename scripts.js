@@ -17,6 +17,7 @@ function divide (a, b) {
 let numberFirst = "";
 let numberSecond = "";
 let operator = "";
+let equalUsed = false;
 
 let display = document.querySelector("#display");
 
@@ -42,6 +43,10 @@ const operatorInput = [
 ];
 
 numberInput.forEach((button) => button.btn.addEventListener("click", () => {
+    if (equalUsed === true) {
+        display.textContent = "";
+        equalUsed = false;
+    }
     display.textContent += button.value;
     if (operator === "") {
         numberFirst += button.value;
@@ -51,8 +56,19 @@ numberInput.forEach((button) => button.btn.addEventListener("click", () => {
 }));
 
 operatorInput.forEach((button) => button.btn.addEventListener("click", () => {
-    display.textContent += button.value;
-    operator = button.value;
+    if (equalUsed === true) {
+        equalUsed = false;
+    }
+    if (operator === "" && numberFirst !== "") {
+        display.textContent += button.value;
+        operator = button.value;
+    } else if (numberFirst === "") {
+        //do nothing
+    } else {
+        operate(parseFloat(numberFirst), parseFloat(numberSecond), operator);
+        display.textContent += button.value;
+        operator = button.value;
+        }
 }));
 
 clearInput.addEventListener("click", () => {
@@ -63,20 +79,23 @@ clearInput.addEventListener("click", () => {
 });
 
 equalInput.addEventListener("click", () => {
-    operate(parseFloat(numberFirst), parseFloat(numberSecond), operator);
+    if (numberFirst !== "" && numberSecond !== "") {
+        operate(parseFloat(numberFirst), parseFloat(numberSecond), operator);
+        equalUsed = true;
+    }
 });
 
-function operate (numOne, numTwo, operator) {
+function operate (numOne, numTwo, op) {
     
     let result = () => {
-    switch (operator) {
+    switch (op) {
         case " + ": return add(numOne, numTwo); break;
         case " - ": return subtract(numOne, numTwo); break;
         case " x ": return multiply(numOne, numTwo); break;
         case " / ": return divide(numOne, numTwo); break;
     }
     }
-    numberFirst = result();
+    numberFirst = result().toString();
     operator = "";
     numberSecond = "";
     return display.textContent = numberFirst;
