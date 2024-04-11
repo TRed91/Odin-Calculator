@@ -33,9 +33,11 @@ const numberInput = [
     {btn: document.querySelector("#btn6"), value: "6"},
     {btn: document.querySelector("#btn7"), value: "7"},
     {btn: document.querySelector("#btn8"), value: "8"},
-    {btn: document.querySelector("#btn9"), value: "9"},
-    {btn: document.querySelector("#btnComma"), value: "."}
+    {btn: document.querySelector("#btn9"), value: "9"}
 ];
+
+const commaInput = document.querySelector("#btnComma");
+
 const operatorInput = [
     {btn: document.querySelector("#btnAdd"), value: "+"},
     {btn: document.querySelector("#btnSubtract"), value: "-"},
@@ -57,6 +59,22 @@ numberInput.forEach((button) => button.btn.addEventListener("click", () => {
         numberSecond += button.value; 
     }
 }));
+
+commaInput.addEventListener("click", () => {
+    if (display.textContent !== "") {
+        if (equalUsed === true) {
+                equalUsed = false;
+            }
+        if (operator === "" && !numberFirst.includes(".")) {
+                display.textContent += ".";
+                numberFirst += ".";
+            } else if (operator !== "" && !numberSecond.includes(".") && numberSecond !== "") {
+                display.textContent += ".";
+                numberSecond += "."; 
+            }
+           
+    }
+});
 
 operatorInput.forEach((button) => button.btn.addEventListener("click", () => {
     if (equalUsed === true) {
