@@ -33,7 +33,8 @@ const numberInput = [
     {btn: document.querySelector("#btn6"), value: "6"},
     {btn: document.querySelector("#btn7"), value: "7"},
     {btn: document.querySelector("#btn8"), value: "8"},
-    {btn: document.querySelector("#btn9"), value: "9"}
+    {btn: document.querySelector("#btn9"), value: "9"},
+    {btn: document.querySelector("#btnComma"), value: "."}
 ];
 const operatorInput = [
     {btn: document.querySelector("#btnAdd"), value: " + "},
