@@ -11,6 +11,7 @@ body {
     border: solid 5px black;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
     padding: 10px;
     border-radius: 10px;
@@ -80,15 +81,19 @@ button {
     border: solid black 3px;
 }
 
-p {
-    height: 5px;
-    flex-shrink: 1;
+#commaDeleteContainer {
+    display: flex;
+    justify-content:space-between;
+}
+
+#name {
     color: antiquewhite;
     text-align: end;
+    align-self: flex-end;
     margin: 0%;
 }
 
 #btnDelete {
-    font-size: 20px;
-    min-width: 100px;
+    font-size: 30px;
+    min-width: 150px;
 }
