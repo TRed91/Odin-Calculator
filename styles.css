@@ -87,3 +87,8 @@ p {
     text-align: end;
     margin: 0%;
 }
+
+#btnDelete {
+    font-size: 20px;
+    min-width: 100px;
+}

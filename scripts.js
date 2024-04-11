@@ -37,11 +37,13 @@ const numberInput = [
     {btn: document.querySelector("#btnComma"), value: "."}
 ];
 const operatorInput = [
-    {btn: document.querySelector("#btnAdd"), value: " + "},
-    {btn: document.querySelector("#btnSubtract"), value: " - "},
-    {btn: document.querySelector("#btnMultiply"), value: " x "},
-    {btn: document.querySelector("#btnDivide"), value: " / "}
+    {btn: document.querySelector("#btnAdd"), value: "+"},
+    {btn: document.querySelector("#btnSubtract"), value: "-"},
+    {btn: document.querySelector("#btnMultiply"), value: "x"},
+    {btn: document.querySelector("#btnDivide"), value: "/"}
 ];
+
+const deleteInput = document.querySelector("#btnDelete");
 
 numberInput.forEach((button) => button.btn.addEventListener("click", () => {
     if (equalUsed === true) {
@@ -86,14 +88,39 @@ equalInput.addEventListener("click", () => {
     }
 });
 
+deleteInput.addEventListener("click", () => {
+    if (display.textContent != ""){
+        numberFirst = "";
+        numberSecond = "";
+        let deleteLast = display.textContent.slice(0, -1)
+        display.textContent = deleteLast;
+        let arrayFromDelete = deleteLast.split("")
+        let operatorIndex = arrayFromDelete.findIndex(isOperator);
+        if (operatorIndex > 0) {
+            for (let i = 0; i < operatorIndex; i++){
+                numberFirst += arrayFromDelete[i];
+            }
+            for (let j = operatorIndex + 1; j < arrayFromDelete.length; j++) {
+                numberSecond += arrayFromDelete[j];
+            }
+            operator = arrayFromDelete[operatorIndex];
+        } else {
+            numberFirst = display.textContent;
+            operator = "";
+            numberSecond = "";
+        }
+    }
+    
+});
+
 function operate (numOne, numTwo, op) {
     
     let result = () => {
     switch (op) {
-        case " + ": return add(numOne, numTwo); break;
-        case " - ": return subtract(numOne, numTwo); break;
-        case " x ": return multiply(numOne, numTwo); break;
-        case " / ": return divide(numOne, numTwo); break;
+        case "+": return add(numOne, numTwo); break;
+        case "-": return subtract(numOne, numTwo); break;
+        case "x": return multiply(numOne, numTwo); break;
+        case "/": return divide(numOne, numTwo); break;
     }
     }
     numberFirst = (Math.round(result() *10) / 10).toString();
@@ -104,4 +131,15 @@ function operate (numOne, numTwo, op) {
         return display.textContent = "You doomed us all!";
     }
     return display.textContent = numberFirst;
+}
+
+function isOperator (element) {
+    if (element === "+" ||
+        element === "-" ||
+        element === "x" ||
+        element === "/" ){
+            return true;
+        } else {
+            return false;
+        }
 }
