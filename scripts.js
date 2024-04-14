@@ -50,6 +50,7 @@ const deleteInput = document.querySelector("#btnDelete");
 numberInput.forEach((button) => button.btn.addEventListener("click", () => {
     if (equalUsed === true) {
         display.textContent = "";
+        numberFirst = "";
         equalUsed = false;
     }
     display.textContent += button.value;

@@ -23,7 +23,7 @@ body {
 }
 
 #operatorButtonsContainer button {
-    flex: 1;
+    flex: auto;
 }
 
 #numClearEqualContainer {
@@ -95,5 +95,5 @@ button {
 
 #btnDelete {
     font-size: 30px;
-    min-width: 150px;
+    width: 150px;
 }
